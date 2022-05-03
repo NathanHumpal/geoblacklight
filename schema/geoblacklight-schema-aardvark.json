@@ -1,9 +1,19 @@
 {
-  "$schema": "http://json-schema.org/schema#",
-  "description": "Schema for GeoBlacklight. See https://opengeometadata.github.io/aardvark/aardvarkMetadata.html for more details.",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "id": "http://geoblacklight.org/schema/aardvark",
   "title": "GeoBlacklight Schema - Aardvark",
-  "type": "object",
+     "description": "OGM Aardvark is a discovery metadata schema for geospatial resources. It was intentionally developed with cross-application in mind and can be used to describe geospatial assets of all kinds.It is also the newest metadata application profile schema for GeoBlacklight. Launched in 2021, it replaces the GeoBlacklight metadata schema version 1.0 (GBL 1.0). Compared to GBL 1.0, Aardvark incorporates additional fields for better descriptions of a wider range of resources, as well as syntactical updates in order to improve interoperability between institutions and between schemas. For GeoBlacklight users, it is the recommended schema for installations starting with GeoBlacklight version 4.0.",
+    "type": "object",
+    "patternProperties": {
+        "^.+_.+_s$": {"type": "string"},
+        "^.+_.+_sm$": {
+            "oneOf": [
+                {"type": "string"},
+                {"type": "array"}
+            ]
+        }
+    },
+    "required": ["dct_title_s"],
   "properties": {
     "dct_title_s": { "type": "string" },
     "dct_alternative_sm": {
@@ -186,6 +196,5 @@
     },
     "gbl_suppressed_b": { "type": "boolean" },
     "gbl_georeferenced_b": { "type": "boolean" }
-  },
-  "required": ["id", "dct_title_s", "gbl_resourceClass_sm", "dct_accessRights_s", "gbl_mdVersion_s"]
+  }
 }
